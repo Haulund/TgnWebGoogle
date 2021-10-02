@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/all-instructors', (req, res) => {
+app.get('/instructors', (req, res) => {
     Instructor.find()
         .then( result => {
             res.send(result)   
@@ -22,17 +22,11 @@ app.get('/all-instructors', (req, res) => {
         .catch( err => console.log(err))
 })
 
-/* app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}`);
-    console.log('Press Ctrl+C to quit.');
-}); */
-
 mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true })
     .then(()=> app.listen(PORT, () => {
         console.log(`App listening on port ${PORT}`);
         console.log('Press Ctrl+C to quit.');
     }))
-    .then(() => console.log('APP Running & DB connected'))
+    .then(() => console.log('App Running & DB connected'))
     .catch( err => console.log(err))
 
-module.exports = app;
